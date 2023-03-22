@@ -17,7 +17,24 @@ float anguloZ;
 unsigned long controleTempo;
 
 void setup() {
+  Serial.begin(9600);
+  Wire.begin();
+  mpu6050.begin();
+  mpu6050,calcGyroOffsets(false);
 
+  pinMode(pinLedX,OUTPUT);
+  pinMode(pinLedY,OUTPUT);
+  pinMode(pinLedZ,OUTPUT);
+  digitalWrite(pinLedX,HIGH);  
+  digitalWrite(pinLedY,HIGH); 
+  digitalWrite(pinLedZ,HIGH);
+  delay(500);
+  digitalWrite(pinLedX,LOW); 
+  digitalWrite(pinLedY,LOW); 
+  digitalWrite(pinLedZ,LOW);    
+  #ifdef DEBUG
+  Serial.print("fim setup");
+  #endif
 }
 
 void loop() {
